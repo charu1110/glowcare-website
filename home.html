@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Welcome to GlowCare — clean, dermatologist-tested skincare. Shop by category or concern and build a routine that actually suits your skin." />
+  <meta name="theme-color" content="#C2557A" />
+  <meta name="author" content="GlowCare" />
+
+  <title>Home — GlowCare Clean Skincare</title>
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='30' fill='%23C2557A'/%3E%3Cpath d='M32 14c6 8 12 12 12 20a12 12 0 0 1-24 0c0-8 6-12 12-20z' fill='%23fff'/%3E%3C/svg%3E" />
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <a class="skip-link" href="#welcome">Skip to content</a>
+
+  <!-- ============ ANNOUNCEMENT ============ -->
+  <div class="announce">
+    <p>✦ Free shipping on orders over ₹1499 &nbsp;·&nbsp; Use code <strong>GLOW10</strong> for 10% off</p>
+  </div>
+
+  <!-- ============ HEADER ============ -->
+  <header class="header" id="header">
+    <div class="container header__inner">
+      <a href="home.html" class="logo" aria-label="GlowCare home">
+        <span class="logo__mark" aria-hidden="true">
+          <svg viewBox="0 0 32 32" width="28" height="28"><path d="M16 4c3.6 5 7 7.6 7 12a7 7 0 0 1-14 0c0-4.4 3.4-7 7-12z" fill="currentColor"/><circle cx="23.5" cy="8.5" r="2.2" fill="currentColor" opacity=".55"/></svg>
+        </span>
+        <span class="logo__text">Glow<em>Care</em></span>
+      </a>
+
+      <nav class="nav" id="nav" aria-label="Main navigation">
+        <ul class="nav__list">
+          <li><a class="nav__link is-active" href="home.html" aria-current="page">Home</a></li>
+          <li><a class="nav__link" href="index.html#products">Products</a></li>
+          <li><a class="nav__link" href="index.html#about">About</a></li>
+          <li><a class="nav__link" href="index.html#contact">Contact</a></li>
+        </ul>
+      </nav>
+
+      <div class="header__actions">
+        <button class="cart-btn" id="cartBtn" type="button" aria-label="Open cart">
+          <svg viewBox="0 0 24 24" width="21" height="21" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4z"/><path d="M3 6h18"/><path d="M16 10a4 4 0 0 1-8 0"/></svg>
+          <span class="cart-btn__count" id="cartCount">0</span>
+        </button>
+
+        <button class="burger" id="burger" type="button" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============ WELCOME HERO ============ -->
+    <section class="welcome" id="welcome">
+      <div class="container welcome__inner reveal">
+        <span class="pill">✦ Welcome to GlowCare</span>
+        <h1 class="welcome__title">Good skin isn't luck.<br />It's a <em>routine</em>.</h1>
+        <p class="welcome__text">
+          Start where your skin actually is. Pick a category, tell us your concern,
+          or jump straight to what 48,000 people keep reordering — every formula is
+          clean, dermatologist-tested and made in small batches in Bengaluru.
+        </p>
+        <div class="welcome__cta">
+          <a href="#bestsellers" class="btn btn--primary">Shop bestsellers</a>
+          <a href="index.html#about" class="btn btn--ghost">Explore the brand</a>
+        </div>
+
+        <ul class="welcome__badges">
+          <li><span aria-hidden="true">🌿</span> 100% vegan</li>
+          <li><span aria-hidden="true">🧪</span> Full-percentage labels</li>
+          <li><span aria-hidden="true">♻️</span> Refillable glass</li>
+          <li><span aria-hidden="true">🚚</span> Ships in 24 hours</li>
+        </ul>
+      </div>
+
+      <div class="welcome__glow" aria-hidden="true"></div>
+    </section>
+
+    <!-- ============ SHOP BY CATEGORY ============ -->
+    <section class="section" id="categories">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="eyebrow">Start here</span>
+          <h2 class="section__title">Shop by category</h2>
+          <p class="section__sub">Four shelves, twenty-six formulas, zero filler ingredients.</p>
+        </header>
+
+        <div class="grid grid--cats">
+          <a class="cat-tile reveal" href="index.html#products" style="--tile-a:#FFF3E6; --tile-b:#F6B98E">
+            <span class="cat-tile__art" aria-hidden="true">
+              <svg viewBox="0 0 80 110"><rect x="33" y="4" width="14" height="22" rx="4" fill="#3B2432"/><rect x="20" y="28" width="40" height="72" rx="14" fill="#fff" stroke="#e7b9c6" stroke-width="2"/><rect x="27" y="58" width="26" height="36" rx="10" fill="#D9607F" opacity=".85"/></svg>
+            </span>
+            <h3>Serums</h3>
+            <p>Targeted actives in the concentrations that actually do the work.</p>
+            <span class="cat-tile__link">7 products <i aria-hidden="true">→</i></span>
+          </a>
+
+          <a class="cat-tile reveal" href="index.html#products" style="--tile-a:#FBF3E7; --tile-b:#E7CFA3">
+            <span class="cat-tile__art" aria-hidden="true">
+              <svg viewBox="0 0 80 110"><rect x="35" y="2" width="10" height="14" rx="3" fill="#3B2432"/><rect x="26" y="14" width="20" height="8" rx="3" fill="#3B2432"/><rect x="18" y="24" width="44" height="76" rx="18" fill="#fff" stroke="#e4d0ae" stroke-width="2"/><rect x="26" y="60" width="28" height="34" rx="12" fill="#C9A46B" opacity=".7"/></svg>
+            </span>
+            <h3>Cleansers</h3>
+            <p>Melt off SPF and city grime without stripping your barrier.</p>
+            <span class="cat-tile__link">6 products <i aria-hidden="true">→</i></span>
+          </a>
+
+          <a class="cat-tile reveal" href="index.html#products" style="--tile-a:#EAF4F6; --tile-b:#A8D3DE">
+            <span class="cat-tile__art" aria-hidden="true">
+              <svg viewBox="0 0 80 110"><rect x="14" y="26" width="52" height="20" rx="8" fill="#3B2432"/><rect x="11" y="44" width="58" height="56" rx="18" fill="#fff" stroke="#b7d9e2" stroke-width="2"/><ellipse cx="40" cy="74" rx="19" ry="14" fill="#5FA3B5" opacity=".75"/></svg>
+            </span>
+            <h3>Moisturisers</h3>
+            <p>From weightless gels to ceramide balms for angry, flaky days.</p>
+            <span class="cat-tile__link">8 products <i aria-hidden="true">→</i></span>
+          </a>
+
+          <a class="cat-tile reveal" href="index.html#products" style="--tile-a:#FFF7E3; --tile-b:#FBE08A">
+            <span class="cat-tile__art" aria-hidden="true">
+              <svg viewBox="0 0 80 110"><rect x="33" y="4" width="14" height="12" rx="4" fill="#3B2432"/><path d="M23 16h34l-4 78a10 10 0 0 1-10 9H37a10 10 0 0 1-10-9z" fill="#fff" stroke="#eed99a" stroke-width="2"/><rect x="30" y="56" width="20" height="32" rx="9" fill="#EFA93B" opacity=".7"/></svg>
+            </span>
+            <h3>Sun Care</h3>
+            <p>SPF 50 PA++++ that vanishes on every Indian skin tone.</p>
+            <span class="cat-tile__link">5 products <i aria-hidden="true">→</i></span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ SHOP BY CONCERN ============ -->
+    <section class="section section--tint" id="concerns">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="eyebrow">Tell us what's going on</span>
+          <h2 class="section__title">Shop by concern</h2>
+          <p class="section__sub">Pick the thing bothering you today — we'll narrow the shelf down.</p>
+        </header>
+
+        <div class="concerns reveal">
+          <a class="chip" href="index.html#products">Dullness &amp; dark spots</a>
+          <a class="chip" href="index.html#products">Dehydration</a>
+          <a class="chip" href="index.html#products">Acne &amp; congestion</a>
+          <a class="chip" href="index.html#products">Fine lines</a>
+          <a class="chip" href="index.html#products">Redness &amp; sensitivity</a>
+          <a class="chip" href="index.html#products">Sun protection</a>
+          <a class="chip" href="index.html#products">Damaged barrier</a>
+          <a class="chip" href="index.html#products">Large pores</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============ BESTSELLERS ============ -->
+    <section class="section" id="bestsellers">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="eyebrow">Reordered most</span>
+          <h2 class="section__title">This month's bestsellers</h2>
+          <p class="section__sub">The four our community can't seem to run out of.</p>
+        </header>
+
+        <!-- Rendered by script.js from the shared product data -->
+        <div class="grid grid--products" id="productGrid" data-limit="4"></div>
+
+        <noscript>
+          <p class="noscript">Please enable JavaScript to see our bestsellers.</p>
+        </noscript>
+
+        <p class="center-cta reveal">
+          <a href="index.html#products" class="btn btn--ghost">View all products</a>
+        </p>
+      </div>
+    </section>
+
+    <!-- ============ ROUTINE ============ -->
+    <section class="section section--tint" id="routine">
+      <div class="container">
+        <header class="section__head reveal">
+          <span class="eyebrow">Three steps, two minutes</span>
+          <h2 class="section__title">Build a routine that sticks</h2>
+          <p class="section__sub">Skip the ten-step nonsense. This is the order that matters.</p>
+        </header>
+
+        <ol class="grid grid--steps">
+          <li class="step reveal">
+            <span class="step__num">01</span>
+            <h3>Cleanse</h3>
+            <p>Morning: a splash of water is enough. Night: the oat cleanser, on dry skin first, then again with water.</p>
+            <span class="step__time">60 seconds</span>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">02</span>
+            <h3>Treat</h3>
+            <p>Vitamin C in the morning, retinal at night — never both. Follow with the water cream while skin is damp.</p>
+            <span class="step__time">45 seconds</span>
+          </li>
+          <li class="step reveal">
+            <span class="step__num">03</span>
+            <h3>Protect</h3>
+            <p>Two fingers of SPF 50 every single morning, indoors included. Re-mist over makeup at lunch.</p>
+            <span class="step__time">15 seconds</span>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <!-- ============ PROMISE STRIP ============ -->
+    <section class="strip" aria-label="Brand promises">
+      <div class="container strip__inner">
+        <span>Paraben Free</span><i>✦</i>
+        <span>Sulphate Free</span><i>✦</i>
+        <span>Never Tested on Animals</span><i>✦</i>
+        <span>Made in India</span><i>✦</i>
+        <span>Recyclable Packaging</span>
+      </div>
+    </section>
+
+    <!-- ============ NEWSLETTER ============ -->
+    <section class="section newsletter-section">
+      <div class="container">
+        <div class="newsletter reveal">
+          <div class="newsletter__copy">
+            <span class="eyebrow eyebrow--light">Join the glow list</span>
+            <h2>Get 10% off your first ritual</h2>
+            <p>Skin tips that aren't nonsense, early access to launches, and a welcome code straight to your inbox. One email a fortnight — that's it.</p>
+          </div>
+
+          <form class="newsletter__form" id="newsletterForm" novalidate>
+            <div class="field">
+              <label class="sr-only" for="email">Email address</label>
+              <input type="email" id="email" name="email" placeholder="you@example.com" autocomplete="email" required />
+              <button class="btn btn--dark" type="submit">Subscribe</button>
+            </div>
+            <p class="form-msg" id="formMsg" role="status"></p>
+            <small class="newsletter__note">No spam. Unsubscribe anytime.</small>
+          </form>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============ FOOTER ============ -->
+  <footer class="footer" id="contact">
+    <div class="container footer__grid">
+
+      <div class="footer__brand">
+        <a href="home.html" class="logo logo--footer">
+          <span class="logo__mark" aria-hidden="true">
+            <svg viewBox="0 0 32 32" width="26" height="26"><path d="M16 4c3.6 5 7 7.6 7 12a7 7 0 0 1-14 0c0-4.4 3.4-7 7-12z" fill="currentColor"/><circle cx="23.5" cy="8.5" r="2.2" fill="currentColor" opacity=".55"/></svg>
+          </span>
+          <span class="logo__text">Glow<em>Care</em></span>
+        </a>
+        <p>Clean, dermatologist-tested skincare made in small batches for everyday glow.</p>
+        <div class="socials">
+          <a href="home.html" aria-label="GlowCare on Instagram"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="2" width="20" height="20" rx="6"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1.2" fill="currentColor" stroke="none"/></svg></a>
+          <a href="home.html" aria-label="GlowCare on Facebook"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M15 3h-3a4 4 0 0 0-4 4v3H5v4h3v7h4v-7h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+          <a href="home.html" aria-label="GlowCare on YouTube"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="2" y="5" width="20" height="14" rx="5"/><path d="m11 9 4 3-4 3z"/></svg></a>
+          <a href="home.html" aria-label="GlowCare on Pinterest"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.7"><circle cx="12" cy="12" r="10"/><path d="M12 7c-2.5 0-4 1.6-4 3.6 0 1 .4 2 1.3 2.4.2 0 .3 0 .3-.2l.2-.7c0-.2 0-.3-.1-.4a2 2 0 0 1-.4-1.3A2.9 2.9 0 0 1 12 8c1.7 0 2.7 1 2.7 2.4 0 1.9-.8 3.4-2 3.4-.7 0-1.2-.6-1-1.3l.5-2c.2-.6-.2-1.1-.8-1.1-.7 0-1.2.7-1.2 1.6 0 .6.2 1 .2 1L9.3 17"/></svg></a>
+        </div>
+      </div>
+
+      <div class="footer__col">
+        <h4>Shop</h4>
+        <ul>
+          <li><a href="index.html#products">Serums</a></li>
+          <li><a href="index.html#products">Cleansers</a></li>
+          <li><a href="index.html#products">Moisturisers</a></li>
+          <li><a href="index.html#products">Sun care</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>Company</h4>
+        <ul>
+          <li><a href="index.html#about">About us</a></li>
+          <li><a href="index.html#why">Ingredients</a></li>
+          <li><a href="index.html#reviews">Reviews</a></li>
+          <li><a href="home.html">Careers</a></li>
+        </ul>
+      </div>
+
+      <div class="footer__col">
+        <h4>Get in touch</h4>
+        <ul class="footer__contact">
+          <li><a href="mailto:hello@glowcare.in">hello@glowcare.in</a></li>
+          <li><a href="tel:+919876543210">+91 98765 43210</a></li>
+          <li>Mon–Sat, 10am – 7pm IST</li>
+          <li>Indiranagar, Bengaluru 560038</li>
+        </ul>
+      </div>
+
+    </div>
+
+    <div class="container footer__bottom">
+      <p>&copy; <span id="year">2026</span> GlowCare Skincare Pvt. Ltd. All rights reserved.</p>
+      <ul class="footer__legal">
+        <li><a href="home.html">Privacy</a></li>
+        <li><a href="home.html">Terms</a></li>
+        <li><a href="home.html">Shipping</a></li>
+      </ul>
+    </div>
+  </footer>
+
+  <!-- ============ CART DRAWER ============ -->
+  <div class="overlay" id="overlay" hidden></div>
+
+  <aside class="cart" id="cart" aria-label="Shopping bag" aria-hidden="true">
+    <header class="cart__head">
+      <h3>Your bag</h3>
+      <button class="cart__close" id="cartClose" type="button" aria-label="Close cart">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </header>
+
+    <div class="cart__body" id="cartBody">
+      <p class="cart__empty" id="cartEmpty">Your bag is empty — the good stuff is one tap away.</p>
+      <ul class="cart__list" id="cartList"></ul>
+    </div>
+
+    <footer class="cart__foot">
+      <div class="cart__total"><span>Subtotal</span><strong id="cartTotal">₹0</strong></div>
+      <button class="btn btn--primary btn--block" id="checkoutBtn" type="button">Checkout</button>
+      <small>Taxes and shipping calculated at checkout.</small>
+    </footer>
+  </aside>
+
+  <!-- ============ TOAST + BACK TO TOP ============ -->
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+  <button class="to-top" id="toTop" type="button" aria-label="Back to top">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m18 15-6-6-6 6"/></svg>
+  </button>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -217,6 +217,11 @@
   function renderProducts(filter) {
     if (!grid) return;
     var list = filter === "all" ? PRODUCTS : PRODUCTS.filter(function (p) { return p.cat === filter; });
+
+    /* home.html shows a short bestsellers row via data-limit="4" */
+    var limit = parseInt(grid.dataset.limit, 10);
+    if (limit > 0) list = list.slice(0, limit);
+
     grid.innerHTML = list.map(cardHTML).join("");
     if (gridEmpty) gridEmpty.hidden = list.length > 0;
     $$(".card", grid).forEach(function (card, i) {
@@ -238,6 +243,36 @@
   });
 
   /* ---------- 4. CART ---------- */
+  /* Saved in localStorage so the bag survives moving between home.html and
+     index.html. Wrapped in try/catch — private mode can block storage. */
+  var STORE_KEY = "glowcare.cart";
+
+  function loadCart() {
+    try {
+      var raw = window.localStorage.getItem(STORE_KEY);
+      var saved = raw ? JSON.parse(raw) : [];
+      if (!Array.isArray(saved)) return [];
+      /* Rebuild from the product list so prices/colours stay authoritative. */
+      return saved.map(function (s) {
+        var p = findProduct(s.id);
+        if (!p) return null;
+        return { id: p.id, name: p.name, price: p.price, colors: p.colors, qty: Math.max(1, parseInt(s.qty, 10) || 1) };
+      }).filter(Boolean);
+    } catch (err) {
+      return [];
+    }
+  }
+
+  function saveCart() {
+    try {
+      window.localStorage.setItem(STORE_KEY, JSON.stringify(cart.map(function (i) {
+        return { id: i.id, qty: i.qty };
+      })));
+    } catch (err) {
+      /* Storage unavailable — the cart simply won't persist. */
+    }
+  }
+
   var cart = [];
   var cartEl = $("#cart");
   var overlay = $("#overlay");
@@ -297,6 +332,7 @@
   }
 
   function drawCart() {
+    saveCart();
     var units = cart.reduce(function (s, i) { return s + i.qty; }, 0);
     var total = cart.reduce(function (s, i) { return s + i.qty * i.price; }, 0);
 
@@ -410,7 +446,11 @@
     });
   }
 
-  var navLinks = $$(".nav__link");
+  /* Scroll spy only applies to same-page anchors. Links to another page
+     (home.html, index.html#products …) are skipped. */
+  var navLinks = $$(".nav__link").filter(function (l) {
+    return (l.getAttribute("href") || "").charAt(0) === "#";
+  });
   var sections = navLinks
     .map(function (l) { return document.querySelector(l.getAttribute("href")); })
     .filter(Boolean);
@@ -423,16 +463,15 @@
     if (header) header.classList.toggle("is-stuck", y > 10);
     if (toTop) toTop.classList.toggle("is-visible", y > 600);
 
-    /* Scroll spy — highlight the section currently under the header. */
-    var current = sections[0];
+    /* Scroll spy — highlight the section currently under the header.
+       Above the first tracked section, nothing is highlighted. */
+    var current = null;
     sections.forEach(function (sec) {
       if (sec.getBoundingClientRect().top <= 140) current = sec;
     });
-    if (current) {
-      navLinks.forEach(function (l) {
-        l.classList.toggle("is-active", l.getAttribute("href") === "#" + current.id);
-      });
-    }
+    navLinks.forEach(function (l) {
+      l.classList.toggle("is-active", !!current && l.getAttribute("href") === "#" + current.id);
+    });
   }
 
   var ticking = false;
@@ -669,6 +708,7 @@
   /* ---------- BOOT ---------- */
   renderProducts("all");
   buildSlider();
+  cart = loadCart();
   drawCart();
   restartAuto();
   onScroll();

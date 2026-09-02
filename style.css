@@ -1086,6 +1086,198 @@ h1, h2, h3, h4 {
 .to-top.is-visible { opacity: 1; visibility: visible; transform: translateY(0); }
 .to-top:hover { transform: translateY(-4px); }
 
+/* ---------- 13b. HOME PAGE (home.html) ---------- */
+.welcome {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: clamp(3.5rem, 8vw, 6rem) 0 clamp(3rem, 6vw, 4.5rem);
+  background:
+    radial-gradient(50rem 26rem at 50% -10%, #fdeaef 0%, rgba(253, 234, 239, 0) 65%),
+    var(--bg);
+}
+
+.welcome__inner {
+  position: relative;
+  z-index: 1;
+  max-width: 780px;
+}
+
+.welcome__title {
+  font-size: clamp(2.4rem, 5.6vw, 4rem);
+  margin-bottom: 1.3rem;
+}
+.welcome__title em {
+  font-style: italic;
+  background: var(--grad);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.welcome__text {
+  color: var(--muted);
+  font-size: 1.08rem;
+  max-width: 60ch;
+  margin: 0 auto 2rem;
+}
+
+.welcome__cta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.9rem;
+}
+
+.welcome__badges {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem 0.7rem;
+  margin-top: 2.6rem;
+}
+.welcome__badges li {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  padding: 0.45rem 1rem;
+  font-size: 0.82rem;
+  color: var(--muted);
+  box-shadow: var(--shadow-sm);
+  transition: transform 0.3s var(--ease), color 0.3s var(--ease);
+}
+.welcome__badges li:hover { transform: translateY(-2px); color: var(--rose-dark); }
+
+.welcome__glow {
+  position: absolute;
+  left: 50%;
+  bottom: -180px;
+  transform: translateX(-50%);
+  width: min(760px, 130vw);
+  height: 340px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 50% 40%, #f8d3dd 0%, rgba(248, 211, 221, 0) 68%);
+  filter: blur(8px);
+  z-index: 0;
+}
+
+/* Category tiles */
+.grid--cats { grid-template-columns: repeat(4, 1fr); }
+
+.cat-tile {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+  padding: 1.6rem 1.5rem 1.5rem;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease), border-color 0.4s var(--ease);
+}
+.cat-tile:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+  border-color: #f0cdd7;
+}
+
+.cat-tile__art {
+  display: grid;
+  place-items: center;
+  height: 130px;
+  margin-bottom: 1.2rem;
+  border-radius: 18px;
+  background: linear-gradient(160deg, var(--tile-a, #fdf3f1) 0%, #ffffff 100%);
+}
+.cat-tile__art svg { height: 104px; width: auto; transition: transform 0.45s var(--ease); }
+.cat-tile:hover .cat-tile__art svg { transform: translateY(-6px) rotate(-4deg); }
+
+.cat-tile h3 { font-size: 1.2rem; margin-bottom: 0.45rem; }
+.cat-tile p { font-size: 0.87rem; color: var(--muted); margin-bottom: 1.1rem; }
+
+.cat-tile__link {
+  margin-top: auto;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--rose-dark);
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+.cat-tile__link i { font-style: normal; transition: transform 0.3s var(--ease); }
+.cat-tile:hover .cat-tile__link i { transform: translateX(5px); }
+
+/* Concern chips */
+.concerns {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.6rem;
+}
+.chip {
+  display: inline-block;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 100px;
+  padding: 0.65rem 1.3rem;
+  font-size: 0.88rem;
+  font-weight: 500;
+  color: var(--ink);
+  transition: all 0.3s var(--ease);
+}
+.chip:hover {
+  background: var(--plum);
+  border-color: var(--plum);
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: var(--shadow);
+}
+
+.center-cta { text-align: center; margin-top: 2.5rem; }
+
+/* Routine steps */
+.grid--steps { grid-template-columns: repeat(3, 1fr); }
+
+.step {
+  position: relative;
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 2rem 1.7rem 1.7rem;
+  transition: transform 0.4s var(--ease), box-shadow 0.4s var(--ease);
+}
+.step:hover { transform: translateY(-6px); box-shadow: var(--shadow); }
+
+.step__num {
+  display: inline-grid;
+  place-items: center;
+  width: 46px; height: 46px;
+  border-radius: 14px;
+  background: var(--grad);
+  color: #fff;
+  font-family: var(--font-display);
+  font-size: 1.05rem;
+  font-weight: 600;
+  margin-bottom: 1.1rem;
+  box-shadow: 0 10px 20px rgba(194, 85, 122, 0.28);
+}
+
+.step h3 { font-size: 1.2rem; margin-bottom: 0.5rem; }
+.step p { font-size: 0.9rem; color: var(--muted); margin-bottom: 1rem; }
+
+.step__time {
+  display: inline-block;
+  font-size: 0.74rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--rose-dark);
+  background: var(--rose-soft);
+  border-radius: 100px;
+  padding: 0.3rem 0.75rem;
+}
+
 /* ---------- 14. ANIMATIONS ---------- */
 @keyframes float {
   0%, 100% { transform: translateY(0); }
@@ -1121,6 +1313,7 @@ h1, h2, h3, h4 {
 @media (max-width: 1080px) {
   .grid--products { grid-template-columns: repeat(2, 1fr); }
   .grid--benefits { grid-template-columns: repeat(2, 1fr); }
+  .grid--cats { grid-template-columns: repeat(2, 1fr); }
   .footer__grid { grid-template-columns: 1fr 1fr; gap: 2rem 2.5rem; }
 }
 
@@ -1167,6 +1360,7 @@ h1, h2, h3, h4 {
   .hero__cta { justify-content: center; }
   .hero__stats { justify-content: center; text-align: center; }
 
+  .grid--steps { grid-template-columns: 1fr; }
   .about { grid-template-columns: 1fr; }
   .about__art { max-width: 460px; margin-inline: auto; }
   .newsletter { grid-template-columns: 1fr; }
@@ -1188,8 +1382,11 @@ h1, h2, h3, h4 {
   .hero__stats { gap: 1.6rem 2rem; }
   .hero__stats strong { font-size: 1.5rem; }
 
-  .grid--products, .grid--benefits { grid-template-columns: 1fr; }
+  .grid--products, .grid--benefits, .grid--cats { grid-template-columns: 1fr; }
   .grid { gap: 1.2rem; }
+  .chip { padding: 0.55rem 1rem; font-size: 0.82rem; }
+  .welcome__badges { gap: 0.5rem; }
+  .welcome__badges li { font-size: 0.76rem; padding: 0.4rem 0.8rem; }
 
   .filters { gap: 0.45rem; }
   .filter { padding: 0.5rem 1rem; font-size: 0.82rem; }
