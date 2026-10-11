@@ -1,5 +1,3 @@
 /* GlowCare price formatting */
 
-function formatPrice(amount) {
-  return "₹" + amount.toFixed(0);
-}
+// formatPrice() was removed: prices are now formatted inside checkoutSummary().
