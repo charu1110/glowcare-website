@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="auto">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hosiery Order Book — Dashboard</title>
+<meta name="description" content="Sales, receivables and data-quality dashboard for one quarter of hosiery wholesale trade.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500;600&family=Source+Sans+3:wght@400;600&display=swap">
+<link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="shell">
+
+  <!-- ==================== SIDEBAR ==================== -->
+  <aside class="sidebar" id="sidebar">
+    <div class="brand">
+      <span class="brand-mark" aria-hidden="true">HB</span>
+      <span class="brand-text">
+        <strong>Hosiery Book</strong>
+        <small>Jul – Sep 2026</small>
+      </span>
+    </div>
+
+    <nav class="nav" aria-label="Sections">
+      <a href="#overview"    class="nav-link is-active"><span class="nav-ico" aria-hidden="true">▤</span>Overview</a>
+      <a href="#receivables" class="nav-link"><span class="nav-ico" aria-hidden="true">◷</span>Receivables</a>
+      <a href="#products"    class="nav-link"><span class="nav-ico" aria-hidden="true">▦</span>Products</a>
+      <a href="#buyers"      class="nav-link"><span class="nav-ico" aria-hidden="true">◔</span>Buyers</a>
+      <a href="#quality"     class="nav-link"><span class="nav-ico" aria-hidden="true">⚑</span>Data quality</a>
+      <a href="#actions"     class="nav-link"><span class="nav-ico" aria-hidden="true">➔</span>Action plan</a>
+      <a href="#orders"      class="nav-link"><span class="nav-ico" aria-hidden="true">☰</span>Order book</a>
+    </nav>
+
+    <div class="side-foot">
+      <div class="side-stat">
+        <span class="ss-label">Outstanding</span>
+        <span class="ss-value" id="sideDue">—</span>
+      </div>
+      <div class="meter" role="img" aria-label="68.9 percent of billing collected">
+        <div class="meter-fill" id="sideMeter"></div>
+      </div>
+      <p class="side-note">of <span id="sideBilled">—</span> billed</p>
+    </div>
+  </aside>
+
+  <!-- ==================== MAIN ==================== -->
+  <div class="main-col">
+
+    <header class="topbar">
+      <button class="icon-btn menu-btn" id="menuBtn" aria-label="Toggle navigation" aria-expanded="false">☰</button>
+      <div class="topbar-title">
+        <h1>Order Book Dashboard</h1>
+        <p>100 bills · 12 buyers · 8 lines · 2 Jul – 27 Sep 2026</p>
+      </div>
+      <div class="topbar-tools">
+        <span class="asof">Aged as of <b>10 Sep 2026</b></span>
+        <button class="icon-btn" id="themeBtn" aria-label="Switch colour theme" title="Switch theme">◐</button>
+      </div>
+    </header>
+
+    <main id="main">
+
+      <!-- ---------- OVERVIEW ---------- -->
+      <section id="overview" class="section">
+        <div class="sec-head">
+          <h2>Overview</h2>
+          <span class="sec-tag">The quarter at a glance</span>
+        </div>
+
+        <div class="kpi-row">
+          <article class="kpi">
+            <span class="kpi-label">Billed</span>
+            <span class="kpi-value" id="kBilled">—</span>
+            <span class="kpi-sub" id="kBilledSub">—</span>
+          </article>
+          <article class="kpi">
+            <span class="kpi-label">Collected</span>
+            <span class="kpi-value" id="kColl">—</span>
+            <span class="kpi-sub" id="kCollSub">—</span>
+          </article>
+          <article class="kpi is-critical">
+            <span class="kpi-label">Outstanding</span>
+            <span class="kpi-value" id="kDue">—</span>
+            <span class="kpi-sub" id="kDueSub">—</span>
+          </article>
+          <article class="kpi is-critical">
+            <span class="kpi-label">Collection rate</span>
+            <span class="kpi-value" id="kRate">—</span>
+            <span class="kpi-sub">Healthy wholesale sits above 85%</span>
+          </article>
+        </div>
+
+        <div class="alert">
+          <span class="alert-ico" aria-hidden="true">!</span>
+          <div class="alert-body">
+            <h3>The oldest money is the least collected</h3>
+            <p>Collection normally <em>improves</em> with age. This book runs backwards — July, the oldest month, collects worst; August, far more recent, collects best. That pattern means old bills are not being chased, and July alone is now <strong>53.6%</strong> of everything owed.</p>
+            <div class="inversion" id="inversion"></div>
+            <p class="alert-foot">Lifting July to August's rate would release about <strong>₹83,000</strong> in cash without selling one extra dozen.</p>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h3>Month by month</h3>
+              <p class="card-sub">Billed value split by what has actually been received.</p>
+            </div>
+            <ul class="legend">
+              <li><i class="sw sw-coll"></i>Collected</li>
+              <li><i class="sw sw-out"></i>Outstanding</li>
+            </ul>
+          </div>
+          <div class="colchart" id="monthly"></div>
+        </div>
+      </section>
+
+      <!-- ---------- RECEIVABLES ---------- -->
+      <section id="receivables" class="section">
+        <div class="sec-head">
+          <h2>Receivables</h2>
+          <span class="sec-tag">₹2,17,162 owed across 48 bills</span>
+        </div>
+
+        <div class="grid-2">
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <h3>Ageing of unpaid balances</h3>
+                <p class="card-sub">Days between the bill date and 10 Sep 2026.</p>
+              </div>
+            </div>
+            <div class="barlist" id="ageing"></div>
+            <p class="card-note">Nothing has passed 90 days yet — none of this debt has gone stale. A further <b>₹33,730</b> sits on 11 bills dated after 10 Sep.</p>
+          </div>
+
+          <div class="card">
+            <div class="card-head">
+              <div>
+                <h3>Payment status</h3>
+                <p class="card-sub">Bills by how much of the value has been settled.</p>
+              </div>
+            </div>
+            <div class="statuslist" id="statuses"></div>
+            <p class="card-note">19 bills are on full <b>udhaar</b> — nothing received at all — worth ₹1,19,000.</p>
+          </div>
+        </div>
+      </section>
+
+      <!-- ---------- PRODUCTS ---------- -->
+      <section id="products" class="section">
+        <div class="sec-head">
+          <h2>Product lines</h2>
+          <span class="sec-tag">886 dozen sold</span>
+        </div>
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h3>Revenue and collection by line</h3>
+              <p class="card-sub">Bar length is revenue; the orange share is what remains unpaid.</p>
+            </div>
+            <ul class="legend">
+              <li><i class="sw sw-coll"></i>Collected</li>
+              <li><i class="sw sw-out"></i>Outstanding</li>
+            </ul>
+          </div>
+          <div class="barlist" id="productList"></div>
+          <p class="card-note"><b>Sweater collects 100%.</b> Vest (22.9%), Thermal (37.5%) and Lower (50.2%) are the problem lines — winter stock going out on credit before the season turns.</p>
+        </div>
+      </section>
+
+      <!-- ---------- BUYERS ---------- -->
+      <section id="buyers" class="section">
+        <div class="sec-head">
+          <h2>Buyers</h2>
+          <span class="sec-tag">Top 5 are 55.4% of revenue</span>
+        </div>
+        <div class="card">
+          <div class="card-head">
+            <div>
+              <h3>All 12 buyers, ordered by money owed</h3>
+              <p class="card-sub">Sorted by outstanding balance, largest first.</p>
+            </div>
+            <ul class="legend">
+              <li><i class="sw sw-coll"></i>Collected</li>
+              <li><i class="sw sw-out"></i>Outstanding</li>
+            </ul>
+          </div>
+          <div class="barlist" id="buyerList"></div>
+          <p class="card-note"><b>Kapoor &amp; Sons</b> and <b>Singla Textiles</b> hold 42.6% of all receivables between them. <b>Bhalla Knitwear</b> has paid every rupee of ₹21,180.</p>
+        </div>
+      </section>
+
+      <!-- ---------- DATA QUALITY ---------- -->
+      <section id="quality" class="section">
+        <div class="sec-head">
+          <h2>Data quality</h2>
+          <span class="sec-tag">What was fixed, what is still missing</span>
+        </div>
+        <p class="sec-lede">The raw ledger's arithmetic was sound — <span class="mono">qty × rate = amount</span> held in all 100 bills. What was broken was everything around the numbers.</p>
+
+        <div class="grid-2">
+          <div class="panel">
+            <h3><i class="dot dot-good"></i>Fixed in the cleaning pass</h3>
+            <ul class="deflist">
+              <li><span class="dl-key">2</span><span class="dl-val"><b>Duplicate bills</b> — 1011 and 1042 entered twice, inflating the book by ₹18,900.</span></li>
+              <li><span class="dl-key">83</span><span class="dl-val"><b>Wrong weekdays</b> of 100. The day column was decorative; now computed from the date.</span></li>
+              <li><span class="dl-key">4</span><span class="dl-val"><b>Date formats</b> in one column, mixing day-first and month-first. 19 dates had no year.</span></li>
+              <li><span class="dl-key">41</span><span class="dl-val"><b>Money cells stored as text</b> — <span class="mono">Rs 2160</span>, <span class="mono">₹5400</span>, <span class="mono">4800/-</span>.</span></li>
+              <li><span class="dl-key">44→12</span><span class="dl-val"><b>Buyer spellings</b> collapsed to real buyers; <b>26→8</b> for products.</span></li>
+              <li><span class="dl-key">16</span><span class="dl-val"><b>Blank cells</b> refilled from qty × rate, which held wherever it could be checked.</span></li>
+            </ul>
+          </div>
+
+          <div class="panel">
+            <h3><i class="dot dot-critical"></i>Still not recorded anywhere</h3>
+            <ul class="deflist">
+              <li><span class="dl-key">cost</span><span class="dl-val"><b>Cost per dozen.</b> No margin, no profit — you cannot tell whether a 31% udhaar rate is survivable or fatal.</span></li>
+              <li><span class="dl-key">when</span><span class="dl-val"><b>Payment date.</b> You see <em>that</em> a bill was paid, never <em>when</em>. Collection days are unmeasurable.</span></li>
+              <li><span class="dl-key">terms</span><span class="dl-val"><b>Credit terms.</b> No due date, no agreed limit — so no bill is ever formally overdue.</span></li>
+              <li><span class="dl-key">stock</span><span class="dl-val"><b>Delivery status.</b> Order and dispatch share one row; disputes and returns are invisible.</span></li>
+              <li><span class="dl-key">rate</span><span class="dl-val"><b>Any discount.</b> Every buyer pays an identical rate on all 8 lines across 100 bills — so discounts are verbal and unrecorded.</span></li>
+              <li><span class="dl-key">11</span><span class="dl-val"><b>Bills dated in the future</b> (₹67,540, up to 27 Sep). Entry errors or advance orders — the ledger cannot say.</span></li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <!-- ---------- ACTIONS ---------- -->
+      <section id="actions" class="section">
+        <div class="sec-head">
+          <h2>Action plan</h2>
+          <span class="sec-tag">Ranked by cash released</span>
+        </div>
+        <p class="sec-lede">Ordered by the rupees each one frees, not by how easy it is. The first two need no new customers, no new stock and no price change.</p>
+
+        <ol class="actions">
+          <li class="action is-now">
+            <span class="action-rank">Now</span>
+            <div class="action-body">
+              <h3>Put a credit limit on the two buyers holding 43% of the debt</h3>
+              <p><b>Kapoor &amp; Sons</b> (₹52,560 owed, 33.7% collected) and <b>Singla Textiles</b> (₹39,960, 42.2%) together hold ₹92,520 while being the two worst payers. Kapoor &amp; Sons is the largest buyer by billing — which is exactly how the exposure grew unnoticed.</p>
+              <p>Set a rupee ceiling per buyer and one rule: no new dispatch while the ceiling is breached.</p>
+            </div>
+            <div class="action-stake">
+              <span class="as-label">At stake</span>
+              <span class="as-value">₹92,520</span>
+              <span class="as-note">42.6% of receivables, 2 buyers</span>
+            </div>
+          </li>
+
+          <li class="action is-now">
+            <span class="action-rank">Now</span>
+            <div class="action-body">
+              <h3>Work the July book before it ages out</h3>
+              <p>₹1,16,326 of July billing is unpaid — over half of everything owed, in the month with the worst collection rate. Nothing here has passed 90 days, so none of it has gone stale yet.</p>
+              <p>Work it oldest-first, not largest-first: the 61–90 day bracket alone is ₹69,056 across 11 bills, so eleven phone calls cover a third of the problem.</p>
+            </div>
+            <div class="action-stake">
+              <span class="as-label">At stake</span>
+              <span class="as-value">₹1,16,326</span>
+              <span class="as-note">53.6% of receivables, 34 bills</span>
+            </div>
+          </li>
+
+          <li class="action is-next">
+            <span class="action-rank">Next</span>
+            <div class="action-body">
+              <h3>Take part-advance on the lines that never get paid for</h3>
+              <p>Collection varies enormously by line, and not randomly. Sweater collects <b>100%</b>. Vest collects <b>22.9%</b>, Thermal <b>37.5%</b>, Lower <b>50.2%</b> — winter stock leaving on udhaar before the season turns.</p>
+              <p>Ask for part-advance on those three specifically. Leave sweater and t-shirt terms alone; they already work.</p>
+            </div>
+            <div class="action-stake">
+              <span class="as-label">At stake</span>
+              <span class="as-value">₹87,046</span>
+              <span class="as-note">Unpaid on Vest, Thermal, Lower</span>
+            </div>
+          </li>
+
+          <li class="action is-next">
+            <span class="action-rank">Next</span>
+            <div class="action-body">
+              <h3>Add four columns to the bill book</h3>
+              <p><b>Cost per dozen</b>, <b>payment date</b>, <b>due date</b>, <b>delivery status</b>. Cost matters most: on ₹6,99,040 of billing you cannot currently state one rupee of profit.</p>
+              <p>Payment date is the cheapest to add and unlocks the most — it turns paid/unpaid into a real collection-days figure per buyer.</p>
+            </div>
+            <div class="action-stake">
+              <span class="as-label">Unlocks</span>
+              <span class="as-value">Margin</span>
+              <span class="as-note">Unmeasurable on the full ₹6.99L</span>
+            </div>
+          </li>
+
+          <li class="action is-watch">
+            <span class="action-rank">Watch</span>
+            <div class="action-body">
+              <h3>Reduce reliance on five buyers</h3>
+              <p>The top 5 buyers are <b>55.4%</b> of revenue, the top 3 are 35.3%. A median of 6 days between a buyer's orders means these are close working relationships — a strength, until one stops.</p>
+              <p>New Punjab Cloth House averages ₹3,480 a bill against a book average of ₹6,990; growing small existing accounts is cheaper than finding new ones.</p>
+            </div>
+            <div class="action-stake">
+              <span class="as-label">Concentration</span>
+              <span class="as-value">55.4%</span>
+              <span class="as-note">Revenue from 5 of 12 buyers</span>
+            </div>
+          </li>
+
+          <li class="action is-watch">
+            <span class="action-rank">Watch</span>
+            <div class="action-body">
+              <h3>Fix date entry at the source</h3>
+              <p>11 bills are dated after 10 September, and 6 more are genuinely undecidable because the ledger mixes day-first and month-first in one column. Writing dates one way — <span class="mono">DD-MM-YYYY</span>, always with the year — costs nothing and removes an error no cleaning can fully undo.</p>
+            </div>
+            <div class="action-stake">
+              <span class="as-label">Affected</span>
+              <span class="as-value">17 bills</span>
+              <span class="as-note">₹67,540 future-dated, 6 ambiguous</span>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <!-- ---------- ORDERS ---------- -->
+      <section id="orders" class="section">
+        <div class="sec-head">
+          <h2>Order book</h2>
+          <span class="sec-tag">All 100 cleaned bills</span>
+        </div>
+        <p class="sec-lede">Click any column heading to sort. <span class="flagmark">date?</span> marks the 6 bills whose date could not be resolved from the ledger alone; <span class="flagmark">rate≈</span> marks the 3 rates written as “approx”.</p>
+
+        <div class="toolbar">
+          <input type="search" id="q" class="field" placeholder="Search buyer or bill no…" aria-label="Search buyer or bill number">
+          <select id="fc" class="field" aria-label="Filter by buyer"><option value="">All buyers</option></select>
+          <select id="fi" class="field" aria-label="Filter by product"><option value="">All products</option></select>
+          <select id="fs" class="field" aria-label="Filter by status">
+            <option value="">All statuses</option><option>Paid</option><option>Partial</option><option>Unpaid</option>
+          </select>
+          <select id="fm" class="field" aria-label="Filter by month">
+            <option value="">All months</option><option value="07">July</option><option value="08">August</option><option value="09">September</option>
+          </select>
+          <button class="btn-reset" id="reset">Reset</button>
+          <span class="tally" id="tally"></span>
+        </div>
+
+        <div class="table-wrap">
+          <table class="data-table">
+            <caption class="sr-only">Cleaned hosiery order book, 100 bills</caption>
+            <thead>
+              <tr>
+                <th scope="col"><button type="button" data-k="no">Bill</button></th>
+                <th scope="col"><button type="button" data-k="date">Date</button></th>
+                <th scope="col"><button type="button" data-k="cust">Buyer</button></th>
+                <th scope="col"><button type="button" data-k="item">Product</button></th>
+                <th scope="col" class="col-r"><button type="button" data-k="qty">Dozens</button></th>
+                <th scope="col" class="col-r"><button type="button" data-k="rate">Rate</button></th>
+                <th scope="col" class="col-r"><button type="button" data-k="amt">Amount</button></th>
+                <th scope="col" class="col-r"><button type="button" data-k="paid">Paid</button></th>
+                <th scope="col" class="col-r"><button type="button" data-k="due">Due</button></th>
+                <th scope="col"><button type="button" data-k="st">Status</button></th>
+              </tr>
+            </thead>
+            <tbody id="tbody"></tbody>
+          </table>
+        </div>
+        <p class="empty" id="empty" hidden>No bills match these filters.</p>
+      </section>
+
+      <footer class="foot">
+        <p>Source <b>hosiery_orders_clean.csv</b> — 102 raw rows reduced to 100 unique bills. Totals reconcile exactly to the raw ledger (<span class="mono">₹6,99,040</span> billed, <span class="mono">₹4,81,878</span> collected), so nothing here rests on an altered figure. Quantities are in <b>dozens</b>, the unit the book is kept in; amounts use Indian digit grouping.</p>
+      </footer>
+
+    </main>
+  </div>
+</div>
+
+<div class="tooltip" id="tooltip" role="status" aria-live="polite"></div>
+<div class="scrim" id="scrim" hidden></div>
+
+<script src="js/data.js"></script>
+<script src="js/dashboard.js"></script>
+</body>
+</html>

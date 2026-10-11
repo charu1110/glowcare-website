@@ -1,0 +1,10 @@
+# Secrets — NEVER push these to GitHub
+.env
+.env.local
+.env.*.local
+
+# Installed packages (Vercel installs them itself)
+node_modules/
+
+# Vercel CLI folder
+.vercel

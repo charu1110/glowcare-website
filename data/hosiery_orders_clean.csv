@@ -1,0 +1,101 @@
+order_no,date,day,customer,item,qty_dozens,rate_per_dozen,amount,amount_paid,balance_due,payment_status,payment_mode,date_confidence,rate_is_estimate,item_raw,day_raw,day_raw_mismatch,payment_status_raw
+1001,2026-07-04,Sat,Deep Hosiery,T-Shirt,15,900,13500,13500,0,Paid,Unspecified,high,False,Tshirt,Sat,False,Paid
+1002,2026-09-26,Sat,Bhalla Knitwear,Lower,3,720,2160,2160,0,Paid,Unspecified,high,False,Lowers,Wed,True,PAID
+1003,2026-08-10,Mon,Bhalla Knitwear,Track Pant,10,1100,11000,11000,0,Paid,Unspecified,high,True,track pant,Mon,False,PAID
+1004,2026-07-18,Sat,Star Woollens,Track Pant,3,1100,3300,3300,0,Paid,Unspecified,high,False,track pant,Fri,True,paid
+1005,2026-08-27,Thu,New Punjab Cloth House,Socks,3,240,720,288,432,Partial,Unspecified,high,False,socks,Mon,True,Part Paid
+1006,2026-09-01,Tue,Singla Textiles,Baniyan,20,360,7200,7200,0,Paid,Unspecified,high,False,Banyan,Wed,True,Paid
+1007,2026-07-02,Thu,Singla Textiles,Lower,20,720,14400,0,14400,Unpaid,Credit,high,False,Lowers,Thu,False,udhaar
+1008,2026-07-16,Thu,Singla Textiles,T-Shirt,10,900,9000,9000,0,Paid,Unspecified,high,False,T Shirt,Fri,True,paid
+1009,2026-09-16,Wed,Verma Garments,T-Shirt,5,900,4500,1350,3150,Partial,Unspecified,high,False,t-shirt,Tue,True,part paid
+1010,2026-09-23,Wed,Deep Hosiery,Lower,8,720,5760,2880,2880,Partial,Unspecified,high,False,lower,Sat,True,part paid
+1011,2026-08-28,Fri,Lucky Traders,T-Shirt,6,900,5400,5400,0,Paid,Unspecified,high,False,t-shirt,Sun,True,Paid
+1012,2026-07-06,Mon,Bhalla Knitwear,Baniyan,5,360,1800,1800,0,Paid,Unspecified,high,False,Banyan,Mon,False,paid
+1013,2026-07-23,Thu,Deep Hosiery,T-Shirt,2,900,1800,540,1260,Partial,Unspecified,high,False,t-shirt,Fri,True,Partial
+1014,2026-08-25,Tue,Arora Collection,T-Shirt,15,900,13500,13500,0,Paid,Cash,high,False,T Shirt,Thu,True,Cash
+1015,2026-08-26,Wed,Singla Textiles,T-Shirt,8,900,7200,2880,4320,Partial,Unspecified,high,False,t-shirt,Fri,True,part paid
+1016,2026-08-16,Sun,Kapoor & Sons,Baniyan,5,360,1800,1800,0,Paid,Unspecified,high,False,Baniyan,Fri,True,Paid
+1017,2026-09-26,Sat,Maa Durga Garments,T-Shirt,8,900,7200,0,7200,Unpaid,Credit,high,False,T Shirt,Thu,True,Udhaar
+1018,2026-08-03,Mon,Lucky Traders,T-Shirt,8,900,7200,0,7200,Unpaid,Credit,high,False,T Shirt,Mon,False,Udhaar
+1019,2026-07-16,Thu,Guru Nanak Hosiery,Track Pant,4,1100,4400,4400,0,Paid,Unspecified,high,False,Track Pant,Fri,True,paid
+1020,2026-08-10,Mon,Star Woollens,Thermal,10,1450,14500,14500,0,Paid,Unspecified,high,False,Thermal Set,Wed,True,PAID
+1021,2026-08-13,Thu,Sharma Traders,Socks,20,240,4800,4800,0,Paid,Unspecified,high,False,Sock,Fri,True,Paid
+1022,2026-07-05,Sun,Sharma Traders,Socks,2,240,480,144,336,Partial,Unspecified,high,False,Sock,Sun,False,Part Paid
+1023,2026-08-06,Thu,Lucky Traders,T-Shirt,15,900,13500,6750,6750,Partial,Unspecified,high,False,T-Shirt,Sat,True,Part Paid
+1024,2026-07-09,Thu,Kapoor & Sons,Baniyan,4,360,1440,432,1008,Partial,Unspecified,ambiguous,False,Baniyan,Fri,True,part paid
+1025,2026-07-08,Wed,Deep Hosiery,Socks,10,240,2400,1200,1200,Partial,Unspecified,ambiguous,False,Ankle Socks,Fri,True,Part Paid
+1026,2026-08-02,Sun,New Punjab Cloth House,Baniyan,12,360,4320,4320,0,Paid,Unspecified,high,False,Baniyan,Sat,True,PAID
+1027,2026-07-11,Sat,Singla Textiles,T-Shirt,12,900,10800,5400,5400,Partial,Unspecified,high,False,T-Shirt,Fri,True,Partial
+1028,2026-09-27,Sun,Verma Garments,T-Shirt,20,900,18000,18000,0,Paid,Unspecified,high,False,T Shirt,Sat,True,Paid
+1029,2026-09-21,Mon,Verma Garments,Socks,15,240,3600,3600,0,Paid,Unspecified,high,False,Socks,Fri,True,PAID
+1030,2026-08-09,Sun,Arora Collection,Track Pant,8,1100,8800,8800,0,Paid,Unspecified,ambiguous,False,Lower Track,Wed,True,paid
+1031,2026-09-03,Thu,Sharma Traders,Sweater,5,1800,9000,9000,0,Paid,Cash,high,False,Sweter,Sun,True,Cash
+1032,2026-07-26,Sun,Bhalla Knitwear,Socks,3,240,720,720,0,Paid,Unspecified,high,False,socks,Sun,False,paid
+1033,2026-08-24,Mon,Maa Durga Garments,Track Pant,4,1100,4400,4400,0,Paid,Unspecified,high,False,track pant,Sun,True,Paid
+1034,2026-08-27,Thu,New Punjab Cloth House,Lower,15,720,10800,5400,5400,Partial,Unspecified,high,False,Track Lower,Thu,False,part paid
+1035,2026-08-28,Fri,Maa Durga Garments,Lower,5,720,3600,1080,2520,Partial,Unspecified,high,False,Lower,Tue,True,part paid
+1036,2026-08-02,Sun,Star Woollens,T-Shirt,20,900,18000,18000,0,Paid,Unspecified,high,False,Tshirt,Sun,False,PAID
+1037,2026-08-20,Thu,Guru Nanak Hosiery,Track Pant,4,1100,4400,4400,0,Paid,Unspecified,high,False,Track Pant,Fri,True,paid
+1038,2026-07-06,Mon,New Punjab Cloth House,Lower,4,720,2880,2880,0,Paid,Unspecified,high,False,Lowers,Fri,True,PAID
+1039,2026-08-04,Tue,Lucky Traders,Track Pant,15,1100,16500,16500,0,Paid,Unspecified,high,True,track pant,Mon,True,Paid
+1040,2026-07-20,Mon,Deep Hosiery,T-Shirt,6,900,5400,5400,0,Paid,Unspecified,high,False,Tshirt,Mon,False,Paid
+1041,2026-07-14,Tue,Arora Collection,T-Shirt,5,900,4500,4500,0,Paid,Unspecified,high,False,t-shirt,Sat,True,paid
+1042,2026-08-03,Mon,Lucky Traders,T-Shirt,15,900,13500,13500,0,Paid,Unspecified,high,False,t-shirt,Mon,False,Paid
+1043,2026-08-11,Tue,Sharma Traders,T-Shirt,20,900,18000,18000,0,Paid,Unspecified,high,False,T-Shirt,Fri,True,paid
+1044,2026-08-15,Sat,Maa Durga Garments,Track Pant,20,1100,22000,22000,0,Paid,Unspecified,high,False,Track Pant,Tue,True,paid
+1045,2026-07-10,Fri,Star Woollens,Socks,6,240,1440,432,1008,Partial,Unspecified,high,False,Sock,Sat,True,Partial
+1046,2026-09-02,Wed,Verma Garments,T-Shirt,5,900,4500,4500,0,Paid,Unspecified,high,False,t-shirt,Fri,True,PAID
+1047,2026-09-04,Fri,Arora Collection,Track Pant,2,1100,2200,2200,0,Paid,Unspecified,high,False,Lower Track,Tue,True,PAID
+1048,2026-08-19,Wed,Star Woollens,T-Shirt,10,900,9000,9000,0,Paid,Unspecified,high,False,Tshirt,Thu,True,Paid
+1049,2026-08-10,Mon,Arora Collection,Sweater,10,1800,18000,18000,0,Paid,Unspecified,high,False,Sweter,Sat,True,Paid
+1050,2026-07-11,Sat,Kapoor & Sons,Thermal,20,1450,29000,0,29000,Unpaid,Credit,high,False,thermal,Fri,True,UDHAR
+1051,2026-09-27,Sun,Singla Textiles,Baniyan,5,360,1800,0,1800,Unpaid,Credit,high,False,Baniyan,Sat,True,Credit
+1052,2026-07-16,Thu,Star Woollens,Thermal,10,1450,14500,7250,7250,Partial,Unspecified,high,False,Thermal,Sun,True,Partial
+1053,2026-07-27,Mon,Singla Textiles,Baniyan,20,360,7200,0,7200,Unpaid,Credit,high,False,Banyan,Tue,True,Udhaar
+1054,2026-08-18,Tue,Sharma Traders,Vest,5,360,1800,1800,0,Paid,Cash,high,False,vest,Fri,True,Cash
+1055,2026-08-20,Thu,Guru Nanak Hosiery,Track Pant,10,1100,11000,0,11000,Unpaid,Credit,high,False,Track Pant,Tue,True,udhaar
+1056,2026-07-27,Mon,Star Woollens,Vest,4,360,1440,0,1440,Unpaid,Credit,high,False,Vest,Thu,True,udhaar
+1057,2026-09-09,Wed,Verma Garments,Sweater,6,1800,10800,10800,0,Paid,Unspecified,high,False,Sweter,Wed,False,Paid
+1058,2026-08-20,Thu,Kapoor & Sons,Socks,6,240,1440,0,1440,Unpaid,Unspecified,high,False,Socks,Sat,True,Pending
+1059,2026-07-26,Sun,Arora Collection,Track Pant,3,1100,3300,990,2310,Partial,Unspecified,high,False,Track Pant,Tue,True,Partial
+1060,2026-07-25,Sat,Star Woollens,T-Shirt,15,900,13500,4050,9450,Partial,Unspecified,high,False,Tshirt,Tue,True,Partial
+1061,2026-09-03,Thu,Deep Hosiery,T-Shirt,12,900,10800,10800,0,Paid,Cash,high,False,T Shirt,Sat,True,Cash
+1062,2026-08-06,Thu,Deep Hosiery,Lower,10,720,7200,7200,0,Paid,Unspecified,high,False,lower,Sat,True,paid
+1063,2026-08-02,Sun,Kapoor & Sons,Vest,15,360,5400,1620,3780,Partial,Unspecified,high,False,Vest,Sat,True,part paid
+1064,2026-08-19,Wed,Star Woollens,Socks,4,240,960,960,0,Paid,Cash,high,False,Sock,Mon,True,Cash
+1065,2026-08-05,Wed,Lucky Traders,Socks,20,240,4800,4800,0,Paid,Unspecified,high,False,Sock,Mon,True,Paid
+1066,2026-09-27,Sun,Kapoor & Sons,Track Pant,8,1100,8800,0,8800,Unpaid,Credit,high,False,Track Pant,Sat,True,UDHAR
+1067,2026-08-14,Fri,Maa Durga Garments,Socks,12,240,2880,2880,0,Paid,Unspecified,high,False,Socks,Sat,True,PAID
+1068,2026-09-22,Tue,Kapoor & Sons,Baniyan,3,360,1080,540,540,Partial,Unspecified,high,False,Baniyan,Sat,True,Partial
+1069,2026-08-18,Tue,Kapoor & Sons,Lower,8,720,5760,1728,4032,Partial,Unspecified,high,False,Track Lower,Thu,True,part paid
+1070,2026-08-17,Mon,Star Woollens,Baniyan,8,360,2880,2880,0,Paid,Unspecified,high,False,Baniyan,Tue,True,PAID
+1071,2026-07-11,Sat,Singla Textiles,T-Shirt,12,900,10800,4320,6480,Partial,Unspecified,high,False,T-Shirt,Thu,True,Partial
+1072,2026-08-23,Sun,Sharma Traders,Lower,15,720,10800,10800,0,Paid,Cash,high,False,lower,Thu,True,Cash
+1073,2026-08-21,Fri,Kapoor & Sons,T-Shirt,20,900,18000,18000,0,Paid,Unspecified,high,False,t-shirt,Thu,True,paid
+1074,2026-08-10,Mon,Guru Nanak Hosiery,Sweater,4,1800,7200,7200,0,Paid,Unspecified,high,False,sweater,Tue,True,PAID
+1075,2026-07-22,Wed,Singla Textiles,Socks,3,240,720,360,360,Partial,Unspecified,high,False,socks,Sat,True,part paid
+1076,2026-07-17,Fri,Star Woollens,Socks,3,240,720,720,0,Paid,Cash,high,False,Ankle Socks,Wed,True,Cash
+1077,2026-08-13,Thu,Maa Durga Garments,Sweater,4,1800,7200,7200,0,Paid,Unspecified,high,False,Sweter,Fri,True,paid
+1078,2026-08-04,Tue,Guru Nanak Hosiery,Sweater,12,1800,21600,21600,0,Paid,Cash,high,False,Sweater,Tue,False,Cash
+1079,2026-07-25,Sat,New Punjab Cloth House,Vest,10,360,3600,1440,2160,Partial,Unspecified,high,False,Vest,Sat,False,part paid
+1080,2026-08-23,Sun,Bhalla Knitwear,Track Pant,5,1100,5500,5500,0,Paid,Unspecified,high,False,Trackpant,Sun,False,paid
+1081,2026-07-16,Thu,Sharma Traders,T-Shirt,20,900,18000,9000,9000,Partial,Unspecified,high,False,T-Shirt,Mon,True,part paid
+1082,2026-09-07,Mon,Sharma Traders,T-Shirt,4,900,3600,0,3600,Unpaid,Credit,high,False,T Shirt,Thu,True,udhaar
+1083,2026-08-27,Thu,Arora Collection,Lower,6,720,4320,0,4320,Unpaid,Credit,high,False,lower,Tue,True,Udhaar
+1084,2026-07-24,Fri,Kapoor & Sons,Track Pant,6,1100,6600,2640,3960,Partial,Unspecified,high,False,Track Pant,Sat,True,part paid
+1085,2026-08-03,Mon,Star Woollens,Vest,4,360,1440,0,1440,Unpaid,Credit,high,False,Vest,Thu,True,UDHAR
+1086,2026-07-08,Wed,Sharma Traders,Vest,6,360,2160,0,2160,Unpaid,Credit,ambiguous,True,vest,Wed,False,Credit
+1087,2026-09-03,Thu,Sharma Traders,T-Shirt,4,900,3600,1800,1800,Partial,Unspecified,high,False,T-Shirt,Fri,True,Part Paid
+1088,2026-09-20,Sun,Lucky Traders,Socks,6,240,1440,0,1440,Unpaid,Unspecified,high,False,socks,Sat,True,Pending
+1089,2026-09-26,Sat,Sharma Traders,Track Pant,12,1100,13200,5280,7920,Partial,Unspecified,high,False,track pant,Sat,False,Partial
+1090,2026-08-07,Fri,New Punjab Cloth House,Baniyan,3,360,1080,0,1080,Unpaid,Credit,ambiguous,False,Baniyan,Mon,True,UDHAR
+1091,2026-08-19,Wed,Arora Collection,Sweater,6,1800,10800,10800,0,Paid,Cash,high,False,Sweter,Sat,True,Cash
+1092,2026-07-05,Sun,Lucky Traders,Lower,2,720,1440,576,864,Partial,Unspecified,high,False,Track Lower,Wed,True,Partial
+1093,2026-08-05,Wed,Verma Garments,Socks,3,240,720,288,432,Partial,Unspecified,high,False,socks,Sun,True,part paid
+1094,2026-08-07,Fri,Verma Garments,T-Shirt,4,900,3600,1440,2160,Partial,Unspecified,ambiguous,False,t-shirt,Mon,True,Part Paid
+1095,2026-07-02,Thu,New Punjab Cloth House,Socks,4,240,960,960,0,Paid,Unspecified,high,False,Socks,Sat,True,PAID
+1096,2026-07-09,Thu,Verma Garments,T-Shirt,8,900,7200,0,7200,Unpaid,Unspecified,high,False,t-shirt,Wed,True,Pending
+1097,2026-07-12,Sun,Lucky Traders,Socks,12,240,2880,0,2880,Unpaid,Credit,high,False,socks,Sat,True,udhaar
+1098,2026-08-25,Tue,Arora Collection,Vest,15,360,5400,0,5400,Unpaid,Credit,high,False,Vest,Sat,True,udhaar
+1099,2026-07-16,Thu,Arora Collection,Socks,5,240,1200,1200,0,Paid,Unspecified,high,False,Sock,Fri,True,paid
+1100,2026-08-08,Sat,Guru Nanak Hosiery,T-Shirt,4,900,3600,3600,0,Paid,Unspecified,high,False,Tshirt,Tue,True,paid

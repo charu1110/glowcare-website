@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="description" content="Pixel Parlour — retro arcade café and console repair shop in Model Town, Ludhiana. Play, repair, trade-in and book parties. Call or WhatsApp us." />
+<meta name="theme-color" content="#0b0a14" />
+<title>Pixel Parlour — Retro Arcade &amp; Console Repair, Ludhiana</title>
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Crect width='16' height='16' fill='%230b0a14'/%3E%3Crect x='3' y='6' width='10' height='6' fill='%2300e5ff'/%3E%3Crect x='5' y='4' width='2' height='2' fill='%23ff2e88'/%3E%3Crect x='9' y='4' width='2' height='2' fill='%23ff2e88'/%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet" />
+
+<style>
+  :root{
+    --bg:#0b0a14;
+    --bg-2:#12102080;
+    --ink:#eae8ff;
+    --muted:#a29ec7;
+    --cyan:#00e5ff;
+    --pink:#ff2e88;
+    --lime:#9dff3c;
+    --line:#2a2545;
+    --radius:14px;
+    --pixel:'Press Start 2P', monospace;
+    --sans:'Space Grotesk', system-ui, -apple-system, Segoe UI, sans-serif;
+  }
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+
+  body{
+    margin:0;
+    font-family:var(--sans);
+    color:var(--ink);
+    background:var(--bg);
+    line-height:1.65;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
+
+  /* neon glow field + faint scanlines */
+  body::before{
+    content:'';position:fixed;inset:0;z-index:-2;pointer-events:none;
+    background:
+      radial-gradient(60vw 60vw at 12% -10%, #ff2e8833, transparent 60%),
+      radial-gradient(55vw 55vw at 92% 8%, #00e5ff2e, transparent 60%),
+      radial-gradient(70vw 50vw at 50% 110%, #9dff3c1f, transparent 60%);
+  }
+  body::after{
+    content:'';position:fixed;inset:0;z-index:-1;pointer-events:none;opacity:.35;
+    background:repeating-linear-gradient(to bottom, #ffffff08 0 1px, transparent 1px 3px);
+  }
+
+  .wrap{width:min(1080px, 100% - 2rem);margin-inline:auto}
+
+  a{color:var(--cyan)}
+  img{max-width:100%}
+
+  .skip{position:absolute;left:-999px}
+  .skip:focus{left:1rem;top:1rem;z-index:99;background:var(--cyan);color:#000;padding:.6rem 1rem;border-radius:8px}
+
+  /* ---------- header ---------- */
+  header{
+    position:sticky;top:0;z-index:20;
+    backdrop-filter:blur(10px);
+    background:#0b0a14cc;
+    border-bottom:1px solid var(--line);
+  }
+  .bar{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding:.85rem 0}
+  .logo{display:flex;align-items:center;gap:.6rem;text-decoration:none;color:var(--ink)}
+  .logo span{font-family:var(--pixel);font-size:.72rem;letter-spacing:.5px;line-height:1.5}
+  .logo span b{color:var(--cyan);font-weight:400}
+  .logo svg{flex:none;filter:drop-shadow(0 0 8px #00e5ff88)}
+  nav{display:none;gap:1.4rem}
+  nav a{color:var(--muted);text-decoration:none;font-weight:500;font-size:.95rem}
+  nav a:hover{color:var(--ink)}
+  @media(min-width:800px){nav{display:flex}}
+
+  /* ---------- buttons ---------- */
+  .btn{
+    display:inline-flex;align-items:center;gap:.5rem;justify-content:center;
+    font-family:var(--sans);font-weight:700;font-size:1rem;
+    padding:.85rem 1.35rem;border-radius:999px;border:1px solid transparent;
+    text-decoration:none;cursor:pointer;transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn:hover{transform:translateY(-2px)}
+  .btn-wa{background:var(--lime);color:#08210a;box-shadow:0 0 0 0 #9dff3c66}
+  .btn-wa:hover{box-shadow:0 10px 30px -8px #9dff3c99}
+  .btn-call{background:transparent;color:var(--ink);border-color:var(--line)}
+  .btn-call:hover{border-color:var(--cyan);color:var(--cyan)}
+
+  /* ---------- hero ---------- */
+  .hero{padding:4rem 0 3rem;text-align:center}
+  .tag{
+    display:inline-block;font-family:var(--pixel);font-size:.55rem;letter-spacing:1px;
+    color:var(--lime);border:1px solid #9dff3c55;border-radius:999px;padding:.55rem .9rem;
+    background:#9dff3c14;margin-bottom:1.5rem;
+  }
+  h1{
+    font-family:var(--pixel);
+    font-size:clamp(1.35rem, 6vw, 2.9rem);
+    line-height:1.45;margin:0 0 1.1rem;
+    text-shadow:0 0 18px #00e5ff55, 3px 3px 0 #ff2e8844;
+  }
+  h1 em{font-style:normal;color:var(--pink);text-shadow:0 0 18px #ff2e8877}
+  .lede{max-width:52ch;margin:0 auto 2rem;color:var(--muted);font-size:1.08rem}
+  .cta{display:flex;flex-wrap:wrap;gap:.8rem;justify-content:center}
+
+  /* coin marquee */
+  .marquee{
+    margin-top:3rem;border-block:1px solid var(--line);overflow:hidden;
+    background:#ffffff05;
+  }
+  .marquee div{
+    display:flex;gap:2.5rem;width:max-content;padding:.8rem 0;
+    font-family:var(--pixel);font-size:.6rem;color:var(--muted);
+    animation:slide 26s linear infinite;
+  }
+  .marquee i{color:var(--pink);font-style:normal}
+  @keyframes slide{to{transform:translateX(-50%)}}
+
+  /* ---------- sections ---------- */
+  section{padding:3.5rem 0}
+  .eyebrow{font-family:var(--pixel);font-size:.55rem;color:var(--cyan);letter-spacing:1px;display:block;margin-bottom:.9rem}
+  h2{font-family:var(--pixel);font-size:clamp(1rem,3.4vw,1.4rem);line-height:1.5;margin:0 0 .6rem}
+  .sub{color:var(--muted);margin:0 0 2rem;max-width:56ch}
+
+  .grid{display:grid;gap:1rem;grid-template-columns:1fr}
+  @media(min-width:640px){.grid{grid-template-columns:1fr 1fr}}
+  @media(min-width:980px){.grid{grid-template-columns:repeat(3,1fr)}}
+
+  .card{
+    background:linear-gradient(#171432, #12102a);
+    border:1px solid var(--line);border-radius:var(--radius);
+    padding:1.5rem;position:relative;overflow:hidden;
+    transition:transform .2s ease, border-color .2s ease;
+  }
+  .card:hover{transform:translateY(-4px);border-color:#00e5ff66}
+  .card::after{
+    content:'';position:absolute;inset:auto -30% -60% auto;width:180px;height:180px;
+    background:radial-gradient(circle, #ff2e8833, transparent 70%);
+  }
+  .card .ico{font-size:1.6rem;display:block;margin-bottom:.7rem}
+  .card h3{margin:0 0 .4rem;font-size:1.12rem}
+  .card p{margin:0 0 .9rem;color:var(--muted);font-size:.96rem}
+  .price{font-family:var(--pixel);font-size:.62rem;color:var(--lime)}
+
+  /* ---------- contact ---------- */
+  .contact{
+    background:linear-gradient(#171432, #12102a);
+    border:1px solid var(--line);border-radius:20px;padding:clamp(1.5rem,4vw,2.5rem);
+  }
+  .contact-grid{display:grid;gap:2rem;grid-template-columns:1fr}
+  @media(min-width:780px){.contact-grid{grid-template-columns:1.1fr .9fr}}
+  .rows{list-style:none;margin:0;padding:0;display:grid;gap:1rem}
+  .rows li{display:flex;gap:.85rem;align-items:flex-start}
+  .rows .k{font-family:var(--pixel);font-size:.52rem;color:var(--cyan);display:block;margin-bottom:.25rem;letter-spacing:.5px}
+  .rows a{color:var(--ink);text-decoration:none;font-weight:600;font-size:1.05rem}
+  .rows a:hover{color:var(--cyan)}
+  .dot{width:8px;height:8px;border-radius:50%;background:var(--lime);box-shadow:0 0 10px var(--lime);display:inline-block;margin-right:.45rem;animation:pulse 1.6s ease-in-out infinite}
+  @keyframes pulse{50%{opacity:.35}}
+  .open{font-size:.92rem;color:var(--muted)}
+
+  /* ---------- footer ---------- */
+  footer{border-top:1px solid var(--line);padding:2rem 0 5.5rem;color:var(--muted);font-size:.9rem;text-align:center}
+
+  /* floating whatsapp */
+  .fab{
+    position:fixed;right:1rem;bottom:1rem;z-index:30;
+    display:flex;align-items:center;gap:.55rem;
+    background:var(--lime);color:#08210a;font-weight:700;text-decoration:none;
+    padding:.8rem 1.1rem;border-radius:999px;
+    box-shadow:0 12px 30px -10px #9dff3ccc;
+  }
+  .fab:hover{transform:translateY(-2px)}
+  .fab span{display:none}
+  @media(min-width:520px){.fab span{display:inline}}
+
+  .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease}
+  .reveal.in{opacity:1;transform:none}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation:none !important;transition:none !important}
+    .reveal{opacity:1;transform:none}
+    html{scroll-behavior:auto}
+  }
+</style>
+</head>
+<body>
+
+<a class="skip" href="#services">Skip to content</a>
+
+<header>
+  <div class="wrap bar">
+    <a class="logo" href="#top" aria-label="Pixel Parlour home">
+      <svg width="30" height="30" viewBox="0 0 16 16" aria-hidden="true">
+        <rect x="2" y="5" width="12" height="7" rx="1" fill="#00e5ff"/>
+        <rect x="4" y="3" width="2" height="2" fill="#ff2e88"/>
+        <rect x="10" y="3" width="2" height="2" fill="#ff2e88"/>
+        <rect x="5" y="8" width="2" height="2" fill="#0b0a14"/>
+        <rect x="9" y="8" width="2" height="2" fill="#0b0a14"/>
+      </svg>
+      <span>PIXEL<br><b>PARLOUR</b></span>
+    </a>
+    <nav aria-label="Main">
+      <a href="#services">Services</a>
+      <a href="#why">Why us</a>
+      <a href="#visit">Visit</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+
+  <section class="hero wrap">
+    <span class="tag">▶ INSERT COIN · MODEL TOWN, LUDHIANA</span>
+    <h1>Retro arcade café<br>&amp; <em>console repair</em></h1>
+    <p class="lede">
+      90 cabinets, cold coffee, and a workbench that brings dead consoles back to life.
+      Walk in to play — or drop your console and get it back working in 48 hours.
+    </p>
+    <div class="cta">
+      <a class="btn btn-wa" href="https://wa.me/919876543210?text=Hi%20Pixel%20Parlour!%20I'd%20like%20to%20book%20a%20slot." target="_blank" rel="noopener">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm5.5 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1a12 12 0 0 1-5.2-4.4c-.4-.6-1-1.5-1-2.8s.7-2 .9-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6a8 8 0 0 0 3.5 3c.3.2.5.1.6 0l.8-1c.2-.2.3-.2.6-.1l1.9.9c.3.1.5.2.6.3.1.2.1.7-.1 1.3z"/></svg>
+        Chat on WhatsApp
+      </a>
+      <a class="btn btn-call" href="tel:+919876543210">📞 +91 98765 43210</a>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div id="ticker"></div>
+  </div>
+
+  <section class="wrap" id="services">
+    <div class="reveal">
+      <span class="eyebrow">// SELECT PLAYER</span>
+      <h2>What we do</h2>
+      <p class="sub">Five things, done properly. Everything is walk-in — booking just saves you the wait on weekends.</p>
+    </div>
+
+    <div class="grid">
+      <article class="card reveal">
+        <span class="ico">🕹️</span>
+        <h3>Arcade floor</h3>
+        <p>90+ restored cabinets and CRT setups — Street Fighter II, Pac-Man, Tekken 3, Metal Slug. Unlimited play, no tokens.</p>
+        <span class="price">₹199 / HOUR</span>
+      </article>
+
+      <article class="card reveal">
+        <span class="ico">🔧</span>
+        <h3>Console repair</h3>
+        <p>HDMI ports, laser pickups, drift sticks, overheating and blue-light-of-death fixes. PS2 to PS5, Xbox, Switch, retro.</p>
+        <span class="price">FROM ₹499 · 48 HRS</span>
+      </article>
+
+      <article class="card reveal">
+        <span class="ico">💿</span>
+        <h3>Buy, sell &amp; trade-in</h3>
+        <p>Cartridges, discs, controllers and whole consoles. Bring your old kit, walk out with credit or cash the same day.</p>
+        <span class="price">FREE VALUATION</span>
+      </article>
+
+      <article class="card reveal">
+        <span class="ico">🎂</span>
+        <h3>Party bookings</h3>
+        <p>Birthdays, office offsites and college fests. Private floor for up to 40 people, food included, two hours minimum.</p>
+        <span class="price">₹6,999 / 2 HRS</span>
+      </article>
+
+      <article class="card reveal">
+        <span class="ico">🏆</span>
+        <h3>Friday tournaments</h3>
+        <p>Weekly brackets with a real trophy and a month of free play for the winner. Entry closes 7pm every Friday.</p>
+        <span class="price">₹150 ENTRY</span>
+      </article>
+
+      <article class="card reveal">
+        <span class="ico">☕</span>
+        <h3>The café</h3>
+        <p>Cold coffee, masala chai, loaded fries and pizza pockets — served right to your cabinet so you never drop a combo.</p>
+        <span class="price">₹60 ONWARDS</span>
+      </article>
+    </div>
+  </section>
+
+  <section class="wrap" id="why">
+    <div class="reveal">
+      <span class="eyebrow">// HIGH SCORES</span>
+      <h2>Why people keep coming back</h2>
+    </div>
+    <div class="grid">
+      <article class="card reveal"><h3>7 years on one street</h3><p>Same shop, same bench, same two engineers. We fix what we sell and we're still here if it breaks again.</p></article>
+      <article class="card reveal"><h3>No fix, no fee</h3><p>Diagnosis is free. If we can't repair it, you pay nothing and take your console home the same day.</p></article>
+      <article class="card reveal"><h3>Open till midnight</h3><p>Because the best runs start at 10pm. Last entry 11:15pm, and the chai counter stays open to the end.</p></article>
+    </div>
+  </section>
+
+  <section class="wrap" id="visit">
+    <div class="contact reveal">
+      <div class="contact-grid">
+        <div>
+          <span class="eyebrow">// PLAYER 1 READY</span>
+          <h2>Come find us</h2>
+          <p class="sub" style="margin-bottom:1.5rem">
+            Fastest way to book a cabinet or check on a repair is WhatsApp — we usually reply within ten minutes.
+          </p>
+          <div class="cta" style="justify-content:flex-start">
+            <a class="btn btn-wa" href="https://wa.me/919876543210?text=Hi%20Pixel%20Parlour!%20I'd%20like%20to%20book%20a%20slot." target="_blank" rel="noopener">Message on WhatsApp</a>
+            <a class="btn btn-call" href="tel:+919876543210">Call the shop</a>
+          </div>
+        </div>
+
+        <ul class="rows">
+          <li><div><span class="k">PHONE</span><a href="tel:+919876543210">+91 98765 43210</a></div></li>
+          <li><div><span class="k">EMAIL</span><a href="mailto:play@pixelparlour.in">play@pixelparlour.in</a></div></li>
+          <li><div><span class="k">ADDRESS</span><span>Shop 14, Ghumar Mandi Road,<br>Model Town, Ludhiana 141002</span></div></li>
+          <li><div><span class="k">HOURS</span><span class="open"><span class="dot"></span><span id="openNow">Tue – Sun, 11am – 12am</span></span></div></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p>© <span id="year">2026</span> Pixel Parlour · Model Town, Ludhiana · Mondays are for repairs only</p>
+  </div>
+</footer>
+
+<a class="fab" href="https://wa.me/919876543210?text=Hi%20Pixel%20Parlour!" target="_blank" rel="noopener" aria-label="Chat with Pixel Parlour on WhatsApp">
+  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5.1-1.3A10 10 0 1 0 12 2zm5.5 14.1c-.2.6-1.3 1.2-1.8 1.2-.5.1-1 .1-1.7-.1a12 12 0 0 1-5.2-4.4c-.4-.6-1-1.5-1-2.8s.7-2 .9-2.2c.2-.3.5-.3.7-.3h.5c.2 0 .4 0 .6.5l.8 2c.1.2.1.4 0 .5l-.4.6c-.1.2-.3.3-.1.6a8 8 0 0 0 3.5 3c.3.2.5.1.6 0l.8-1c.2-.2.3-.2.6-.1l1.9.9c.3.1.5.2.6.3.1.2.1.7-.1 1.3z"/></svg>
+  <span>WhatsApp</span>
+</a>
+
+<script>
+  // Footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Ticker — duplicated once so the -50% loop is seamless
+  const items = ['NEW: TEKKEN 3 CABINET', '★', 'FRIDAY TOURNAMENT 8PM', '★',
+                 'FREE REPAIR DIAGNOSIS', '★', 'TRADE IN YOUR OLD CONSOLE', '★',
+                 'OPEN TILL MIDNIGHT', '★'];
+  document.getElementById('ticker').innerHTML =
+    [...items, ...items].map(t => t === '★' ? '<i>★</i>' : `<span>${t}</span>`).join('');
+
+  // Open / closed right now (Tue–Sun, 11:00–24:00)
+  const now = new Date();
+  const open = now.getDay() !== 1 && now.getHours() >= 11;
+  const label = document.getElementById('openNow');
+  label.textContent = open ? 'Open now · closes at midnight' : 'Closed · Tue – Sun, 11am – 12am';
+  if (!open) label.previousElementSibling.style.background = '#ff2e88';
+
+  // Scroll reveal
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach((el, i) => {
+    el.style.transitionDelay = (i % 3) * 80 + 'ms';
+    io.observe(el);
+  });
+</script>
+</body>
+</html>

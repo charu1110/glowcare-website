@@ -38,3 +38,17 @@ relative, so the site works identically locally, on GitHub Pages and on Vercel.
 
 All product imagery is generated as inline SVG, so there are no external image
 files to break.
+
+## APIs (Session 7) — Vercel serverless functions
+
+| Endpoint | What it does |
+|---|---|
+| `GET /api/hello` | Proves the pipeline works |
+| `GET /api/greet?name=Priya` | Reads a query parameter |
+| `GET/POST /api/orders` | Reads / writes the Supabase `orders` table |
+| `GET /api/weather?city=Ludhiana` | Live weather from OpenWeatherMap |
+| `GET /api/food-suggest?region=Punjab&place=Ludhiana` | Weather-based food suggestions (homework) |
+
+The page that uses them is `food.html`. To run locally: copy `.env.example` to
+`.env.local`, fill in the keys, then `npm install` and `npm run dev`.
+The full step-by-step setup is in `SETUP_GUIDE.md`; the endpoint spec is in `API_SPEC.md`.

@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Pick a region and place — we check the live weather and suggest local food that suits it." />
+  <meta name="theme-color" content="#C2557A" />
+  <title>Mausam Menu — Food for the Weather</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    .food-page { min-height: 100vh; }
+    .food-form {
+      display: grid;
+      grid-template-columns: 1fr 1fr auto;
+      gap: 1rem;
+      align-items: end;
+      background: var(--surface);
+      padding: 1.5rem;
+      border-radius: var(--radius-lg);
+      box-shadow: var(--shadow);
+      margin-top: 2.5rem;
+    }
+    .food-form label { display: grid; gap: .4rem; font-weight: 600; font-size: .9rem; }
+    .food-form select {
+      font: inherit;
+      padding: .85rem 1rem;
+      border: 1.5px solid var(--line);
+      border-radius: 14px;
+      background: var(--bg);
+      color: var(--ink);
+    }
+    .food-form select:focus { outline: 2px solid var(--rose); outline-offset: 2px; }
+
+    .status { margin-top: 1.5rem; color: var(--muted); min-height: 1.6em; }
+    .status.is-error { color: #b42318; font-weight: 600; }
+
+    .weather-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1rem;
+      margin-top: 1.5rem;
+    }
+    .w-card {
+      background: var(--surface);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 1.1rem 1.2rem;
+    }
+    .w-card small { color: var(--muted); font-size: .8rem; text-transform: uppercase; letter-spacing: .1em; }
+    .w-card strong { display: block; font-family: var(--font-display); font-size: 1.7rem; margin-top: .2rem; }
+    .w-card span { color: var(--muted); font-size: .9rem; }
+    #wDesc { text-transform: capitalize; }
+
+    .mood {
+      margin-top: 2.5rem;
+      font-family: var(--font-display);
+      font-size: clamp(1.4rem, 3vw, 1.9rem);
+    }
+    .mood em { color: var(--rose); font-style: normal; }
+
+    .food-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(230px, 1fr));
+      gap: 1rem;
+      margin-top: 1.25rem;
+    }
+    .food-card {
+      background: var(--surface);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow-sm);
+      padding: 1.4rem;
+      border-top: 4px solid var(--rose);
+    }
+    .food-card__emoji { font-size: 2.2rem; line-height: 1; }
+    .food-card h3 { font-family: var(--font-display); font-size: 1.2rem; margin: .7rem 0 .3rem; }
+    .food-card p { color: var(--muted); font-size: .93rem; }
+    .food-card .tag {
+      display: inline-block; margin-top: .8rem; font-size: .75rem; font-weight: 600;
+      color: var(--rose-dark); background: var(--rose-soft); padding: .2rem .7rem; border-radius: 100px;
+    }
+    .back { display: inline-block; margin-bottom: 1.5rem; color: var(--rose); font-weight: 600; }
+
+    @media (max-width: 720px) {
+      .food-form { grid-template-columns: 1fr; }
+      .weather-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <main class="section section--tint food-page">
+    <div class="container">
+      <a class="back" href="index.html">← Back to GlowCare</a>
+      <span class="eyebrow" style="display:block">Weather × Food</span>
+      <h1 class="section__title">Mausam Menu</h1>
+      <p class="section__sub">Pick a region and a place. We check the live weather there and suggest local food that suits it.</p>
+
+      <form class="food-form" id="foodForm">
+        <label>Region
+          <select id="region" required>
+            <option value="">Loading…</option>
+          </select>
+        </label>
+        <label>Place
+          <select id="place" required disabled>
+            <option value="">Pick a region first</option>
+          </select>
+        </label>
+        <button class="btn btn--primary" type="submit" id="goBtn">Suggest food</button>
+      </form>
+
+      <p class="status" id="status" role="status" aria-live="polite"></p>
+
+      <div id="result" hidden>
+        <div class="weather-grid">
+          <div class="w-card"><small>Temperature</small><strong id="wTemp"></strong><span id="wFeels"></span></div>
+          <div class="w-card"><small>Condition</small><strong id="wCond"></strong><span id="wDesc"></span></div>
+          <div class="w-card"><small>Humidity</small><strong id="wHum"></strong><span>in the air</span></div>
+          <div class="w-card"><small>Wind</small><strong id="wWind"></strong><span>km/h</span></div>
+        </div>
+
+        <p class="mood" id="moodLine"></p>
+        <div class="food-grid" id="foodGrid"></div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const regionSel = document.getElementById("region");
+    const placeSel = document.getElementById("place");
+    const statusEl = document.getElementById("status");
+    const goBtn = document.getElementById("goBtn");
+    let places = {};
+
+    const MOOD_TEXT = {
+      hot: (p) => `It's <em>hot</em> in ${p} — cool down with:`,
+      cold: (p) => `It's <em>cold</em> in ${p} — warm up with:`,
+      rainy: (p) => `It's <em>raining</em> in ${p} — perfect weather for:`,
+      pleasant: (p) => `The weather in ${p} is <em>pleasant</em> — enjoy:`
+    };
+
+    function setStatus(text, isError = false) {
+      statusEl.textContent = text;
+      statusEl.classList.toggle("is-error", isError);
+    }
+
+    // 1. Fill the region dropdown from /api/places
+    fetch("/api/places")
+      .then((r) => r.json())
+      .then((data) => {
+        places = data;
+        regionSel.innerHTML = '<option value="">Choose a region</option>' +
+          Object.keys(places).map((r) => `<option>${r}</option>`).join("");
+      })
+      .catch(() => setStatus("Could not load regions. Is the API running?", true));
+
+    // 2. When a region is picked, fill the place dropdown
+    regionSel.addEventListener("change", () => {
+      const list = places[regionSel.value] || [];
+      placeSel.disabled = list.length === 0;
+      placeSel.innerHTML = list.length
+        ? list.map((p) => `<option>${p}</option>`).join("")
+        : '<option value="">Pick a region first</option>';
+    });
+
+    // 3. Ask our API for weather + food
+    document.getElementById("foodForm").addEventListener("submit", async (e) => {
+      e.preventDefault();
+      const region = regionSel.value;
+      const place = placeSel.value;
+      if (!region || !place) return setStatus("Please choose a region and a place.", true);
+
+      goBtn.disabled = true;
+      setStatus(`Checking the weather in ${place}…`);
+      document.getElementById("result").hidden = true;
+
+      try {
+        const params = new URLSearchParams({ region, place });
+        const res = await fetch(`/api/food-suggest?${params}`);
+        const data = await res.json();
+        if (!res.ok) throw new Error(data.error || "Something went wrong");
+        showResult(data);
+        setStatus("");
+      } catch (err) {
+        setStatus(err.message, true);
+      } finally {
+        goBtn.disabled = false;
+      }
+    });
+
+    function showResult({ place, region, weather, mood, suggestions }) {
+      document.getElementById("wTemp").textContent = `${weather.temp}°C`;
+      document.getElementById("wFeels").textContent = `feels like ${weather.feelsLike}°C`;
+      document.getElementById("wCond").textContent = weather.condition;
+      document.getElementById("wDesc").textContent = weather.description;
+      document.getElementById("wHum").textContent = `${weather.humidity}%`;
+      document.getElementById("wWind").textContent = weather.windSpeed;
+      document.getElementById("moodLine").innerHTML = MOOD_TEXT[mood](place);
+
+      const grid = document.getElementById("foodGrid");
+      grid.innerHTML = "";
+      suggestions.forEach((f) => {
+        const card = document.createElement("article");
+        card.className = "food-card";
+        card.innerHTML = `<div class="food-card__emoji"></div><h3></h3><p></p><span class="tag"></span>`;
+        card.querySelector(".food-card__emoji").textContent = f.emoji || "🍽️";
+        card.querySelector("h3").textContent = f.name;
+        card.querySelector("p").textContent = f.description;
+        card.querySelector(".tag").textContent = f.region === "All" ? "Anywhere in India" : `${region} special`;
+        grid.appendChild(card);
+      });
+      if (!suggestions.length) grid.innerHTML = "<p>No dishes found — did you run supabase/setup.sql?</p>";
+
+      document.getElementById("result").hidden = false;
+    }
+  </script>
+</body>
+</html>
