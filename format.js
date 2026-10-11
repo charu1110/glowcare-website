@@ -1,5 +1,5 @@
 /* GlowCare price formatting */
 
 function formatPrice(amount) {
-  return "₹" + amount.toFixed(0);
+  return "₹" + Math.round(amount).toLocaleString("en-IN");
 }
