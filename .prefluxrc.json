@@ -1,0 +1,26 @@
+{
+  "secrets": {
+    "entropy": {
+      "base64Threshold": 4.5,
+      "hexThreshold": 3,
+      "keywordThreshold": 3,
+      "minLength": 20
+    },
+    "ignorePaths": []
+  },
+  "score": {
+    "weights": {
+      "bugRisk": 0.6,
+      "conflictRisk": 0.4
+    },
+    "thresholds": {
+      "allow": 70,
+      "warn": 40
+    }
+  },
+  "ml": {
+    "enabled": true,
+    "url": "http://127.0.0.1:8000",
+    "timeoutMs": 5000
+  }
+}

@@ -1,0 +1,10 @@
+#!/bin/sh
+# preflux pre-push hook: blocks pushes that leak secrets. Remove this file to uninstall.
+if command -v preflux >/dev/null 2>&1; then
+  preflux scan --hook "$@"
+elif [ -x ./node_modules/.bin/preflux ]; then
+  ./node_modules/.bin/preflux scan --hook "$@"
+else
+  echo "preflux: command not found. Install it with 'npm install -g preflux', or bypass once with 'git push --no-verify'." >&2
+  exit 1
+fi

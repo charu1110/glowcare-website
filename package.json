@@ -3,12 +3,16 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "node dev-server.mjs"
+    "dev": "node dev-server.mjs",
+    "prepare": "husky"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.45.0"
   },
   "engines": {
     "node": ">=20"
+  },
+  "devDependencies": {
+    "husky": "^9.1.7"
   }
 }

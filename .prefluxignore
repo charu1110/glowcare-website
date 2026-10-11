@@ -1,0 +1,6 @@
+# .prefluxignore: paths and findings the preflux secret scanner should skip.
+# Glob patterns, one per line (lockfiles and minified files are already skipped):
+# docs/examples/**
+#
+# Allow one specific finding by the fingerprint shown in the scan report:
+# fingerprint:1a2b3c4d5e6f7a8b
